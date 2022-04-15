@@ -1,0 +1,79 @@
+body {
+  font-family: "Poppins", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  color: #232323;
+}
+
+nav li:last-child a {
+  background: #FE5F1E;
+}
+nav li:last-child a:hover {
+  background: #b23301;
+}
+
+nav li a {
+  transition: all 0.3s ease-in-out;
+}
+nav li a:hover {
+  color: #FE5F1E;
+}
+
+section.hero {
+  background: #F8F8F8;
+}
+
+.size {
+  color: #232323;
+}
+
+.add-to-cart {
+  border: 2px solid #FE5F1E;
+  color: #FE5F1E;
+  transition: all 0.3s ease-in-out;
+}
+.add-to-cart:hover {
+  background-color: #FE5F1E;
+  color: #fff;
+  border-color: #fff;
+}
+
+.btn-primary {
+  background-color: #FE5F1E;
+  transition: all 0.3s ease-in-out;
+}
+.btn-primary:hover {
+  background: #b23301;
+}
+
+section.cart {
+  background: #F8F8F8;
+}
+section.cart .amount {
+  color: #FE5F1E;
+}
+
+section.login {
+  background-color: #F8F8F8;
+  min-height: calc(100vh - 86px);
+}
+
+.primary-color {
+  color: #FE5F1E;
+}
+.primary-color:hover {
+  color: #b23301;
+}
+
+.login-inputs {
+  border-color: #FE5F1E;
+}
+.login-inputs:focus {
+  border-color: #b23301;
+}
+
+.login-btn-primary:hover .svg-color-primary {
+  color: #FE5F1E;
+}
+.login-btn-primary .svg-color-primary {
+  color: #b23301;
+}
