@@ -18,6 +18,9 @@ const public = path.join(__dirname, './public')
 const view = path.join(__dirname, './resources/views')
 // const layout = path.join(__dirname, './resources/views/layout.ejs')
 
+// Body parser
+app.use(express.json())
+app.use(express.urlencoded({extended: false}))
 
 // Public (Static) folder
 app.use(express.static(public))
@@ -29,8 +32,6 @@ app.set('views', view)
 // Layout
 app.use(expresslayouts)
 
-
-
 // Session
 app.use(session({
     secret: process.env.SECRET_KEY,
@@ -40,6 +41,12 @@ app.use(session({
     cookie: {maxAge: 1000 * 60 * 60 * 24}
 }))
 app.use(flash())
+
+// Middleware
+app.use((req, res, next)=>{
+    res.locals.session = req.session
+    next()
+})
 
 // Routes
 app.use('/', require('./routes/web'))
