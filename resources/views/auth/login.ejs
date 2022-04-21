@@ -4,6 +4,9 @@
         display: flex;
         flex-direction: column;
         justify-content: space-evenly;">
+            <% if(messages.error) { %>
+                <span class="alert"><%= messages.error %></span>
+            <% } %>
             <!-- <span class="text-red-500 text-sm">Enter valid password</span> -->
             <div class="mb-4">
                 <label class="block text-gray-700 text-sm font-bold mb-2" for="username">

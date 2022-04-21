@@ -7,7 +7,7 @@ body {
     color: $dark;
 }
 
-nav li:last-child a {
+.carted{
     background: $primary;
     &:hover {
         background: $primary-hover;
@@ -77,4 +77,18 @@ section.login{
     {
         color: $primary-hover;
     }
+}
+span.alert{
+    color: red;
+    border: .2rem solid red;
+    padding-left: .5rem;
+    border-radius: 1rem;
+    transition: $smooth;
+    margin-bottom: .3rem;
+
+    // &:hover{
+    //     cursor: pointer;
+    //     background: red;
+    //     color: white;
+    // }
 }

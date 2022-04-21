@@ -4,10 +4,10 @@ body {
   color: #232323;
 }
 
-nav li:last-child a {
+.carted {
   background: #FE5F1E;
 }
-nav li:last-child a:hover {
+.carted:hover {
   background: #b23301;
 }
 
@@ -76,4 +76,13 @@ section.login {
 }
 .login-btn-primary .svg-color-primary {
   color: #b23301;
+}
+
+span.alert {
+  color: red;
+  border: 0.2rem solid red;
+  padding-left: 0.5rem;
+  border-radius: 1rem;
+  transition: all 0.3s ease-in-out;
+  margin-bottom: 0.3rem;
 }
