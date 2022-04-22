@@ -82,7 +82,15 @@ span.alert {
   color: red;
   border: 0.2rem solid red;
   padding-left: 0.5rem;
+  padding-right: 0.5rem;
   border-radius: 1rem;
   transition: all 0.3s ease-in-out;
   margin-bottom: 0.3rem;
+}
+
+.link {
+  color: #FE5F1E;
+}
+.link:hover {
+  color: #b23301;
 }

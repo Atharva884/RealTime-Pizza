@@ -2192,6 +2192,14 @@ addToCart.forEach(function (btn) {
     updateCart(pizza);
   });
 });
+var successAlert = document.querySelector('#success-alert');
+
+if (successAlert) {
+  console.log('gg');
+  setTimeout(function () {
+    successAlert.style.display = "none";
+  }, 2000);
+}
 
 /***/ }),
 

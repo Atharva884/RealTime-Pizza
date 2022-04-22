@@ -16,3 +16,11 @@ addToCart.forEach((btn)=>{
         updateCart(pizza)
     })
 })
+
+const successAlert = document.querySelector('#success-alert')
+if(successAlert){
+    console.log('gg');
+    setTimeout(() => {
+        successAlert.style.display = "none"
+    }, 2000);
+}

@@ -82,6 +82,7 @@ span.alert{
     color: red;
     border: .2rem solid red;
     padding-left: .5rem;
+    padding-right: .5rem;
     border-radius: 1rem;
     transition: $smooth;
     margin-bottom: .3rem;
@@ -91,4 +92,10 @@ span.alert{
     //     background: red;
     //     color: white;
     // }
+}
+.link{
+    color: $primary;
+    &:hover{
+        color: $primary-hover;
+    }
 }
