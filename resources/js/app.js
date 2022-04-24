@@ -2,6 +2,7 @@ const addToCart = document.querySelectorAll('.add-to-cart')
 let cartCounter = document.getElementById('cartCounter')
 import { initAdmin } from './admin'
 import axios from "axios"
+import moment from "moment"
 
 function updateCart(pizza){
     axios.post('/updateCart', pizza).then(res =>{
@@ -26,3 +27,30 @@ if(successAlert){
 }
 
 initAdmin()
+
+// Update
+let statuses = document.querySelectorAll('.status_line')
+let hiddenInput = document.querySelector('#hiddenInput')
+let order = hiddenInput ? hiddenInput.value : null
+order = JSON.parse(order)
+let time = document.createElement('small')
+
+function updateStatus(order){
+    let stepCompleted = true
+    statuses.forEach((status)=>{
+        let dataprop = status.dataset.status
+        if(stepCompleted){
+            status.classList.add('step-completed')
+        }
+        if(dataprop === order.status){
+            stepCompleted = false
+            time.innerText = moment(order.updatedAt).format('hh:mm A')
+            status.appendChild(time)
+            if(status.nextElementSibling){
+                status.nextElementSibling.classList.add('current')
+            }
+        }
+    })
+}
+
+updateStatus(order)

@@ -30,3 +30,12 @@ exports.index = async (req, res)=>{
     // console.log(req.user._id);
     res.render('customer/order', {data: data, moment: moment})
 }
+
+exports.show = async (req, res)=>{
+    const order = await Order.findById(req.params.id)
+
+    // Authorize
+    if(req.user._id.toString() === order.customerId.toString()){
+        return res.render('customer/singleOrder', { order: order })
+    }
+}
