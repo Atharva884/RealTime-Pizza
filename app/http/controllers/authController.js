@@ -50,6 +50,9 @@ exports.postRegister = async (req, res)=>{
 }
 
 exports.postLogin = async (req, res, next)=>{
+    function reqUrl(req){
+        return req.user.role == "admin" ? "admin/orders" : "customer/orders"
+    }
     passport.authenticate('local', (err, user, info) => {
         if(err) {
             req.flash('error', info.message )
@@ -65,7 +68,7 @@ exports.postLogin = async (req, res, next)=>{
                 return next(err)
             }
 
-            return res.redirect('/')
+            return res.redirect(reqUrl(req))
         })
     })(req, res, next)
 }

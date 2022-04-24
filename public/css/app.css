@@ -94,3 +94,7 @@ span.alert {
 .link:hover {
   color: #b23301;
 }
+
+.img {
+  width: 8%;
+}

@@ -1,5 +1,6 @@
 const addToCart = document.querySelectorAll('.add-to-cart')
 let cartCounter = document.getElementById('cartCounter')
+import { initAdmin } from './admin'
 import axios from "axios"
 
 function updateCart(pizza){
@@ -12,7 +13,6 @@ function updateCart(pizza){
 addToCart.forEach((btn)=>{
     btn.addEventListener('click', ()=>{
         let pizza = JSON.parse(btn.dataset.pizza)
-        // console.log(pizza);
         updateCart(pizza)
     })
 })
@@ -24,3 +24,5 @@ if(successAlert){
         successAlert.style.display = "none"
     }, 2000);
 }
+
+initAdmin()
