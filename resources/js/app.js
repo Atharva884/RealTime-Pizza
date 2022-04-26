@@ -3,6 +3,7 @@ let cartCounter = document.getElementById('cartCounter')
 import { initAdmin } from './admin'
 import axios from "axios"
 import moment from "moment"
+import Noty from 'noty'
 
 function updateCart(pizza){
     axios.post('/updateCart', pizza).then(res =>{
@@ -26,7 +27,6 @@ if(successAlert){
     }, 2000);
 }
 
-initAdmin()
 
 // Update
 let statuses = document.querySelectorAll('.status_line')
@@ -36,6 +36,10 @@ order = JSON.parse(order)
 let time = document.createElement('small')
 
 function updateStatus(order){
+    statuses.forEach((status)=>{
+        status.classList.remove('step-completed')
+        status.classList.remove('current')
+    })
     let stepCompleted = true
     statuses.forEach((status)=>{
         let dataprop = status.dataset.status
@@ -54,3 +58,29 @@ function updateStatus(order){
 }
 
 updateStatus(order)
+
+
+const socket = io()
+initAdmin(socket)
+
+if(order){
+    socket.emit('join', `order_${order._id}`)
+}
+let adminArea = document.location.pathname
+if(adminArea.includes('admin')){
+    socket.emit('join', 'adminRoom')
+}
+
+socket.on('orderUpdated', (data)=>{
+    const UpdatedOrder = { ...order }
+    UpdatedOrder.updatedAt = moment().format()
+    UpdatedOrder.status = data.status
+    updateStatus(UpdatedOrder)
+    new Noty({
+        type: 'success',
+        timeout: 1000,
+        text: 'Order Updated',
+        progressBar: false
+    }).show()
+    console.log(data);
+})

@@ -16,9 +16,11 @@ exports.order = async (req, res)=>{
         phone, address,
     })
 
-    await order.save().then(()=>{
+    await order.save().then((result)=>{
         req.flash('success', 'Order Placed Successful')
         delete req.session.cart
+        const eventEmitter = req.app.get('eventEmitter')
+        eventEmitter.emit('orderPlaced', result)
         return res.redirect('/customer/orders')
     }).catch((err)=>{
         console.log(err);

@@ -7,12 +7,18 @@ const session = require('express-session')
 const flash = require('express-flash')
 const MongoStore = require('connect-mongo')
 const passport = require('passport')
+const eventEmmitter = require('events')
+
 
 // Instantiate
 const app = express()
 
 // Port 
 const port = process.env.PORT || 5000
+
+// Event Emitter
+const eventEmitter = new eventEmmitter()
+app.set('eventEmitter', eventEmitter)
 
 // Paths
 const public = path.join(__dirname, './public')
@@ -63,6 +69,24 @@ app.use((req, res, next)=>{
 app.use('/', require('./routes/web'))
 
 // Listen
-app.listen(port, ()=>{
+const server = app.listen(port, ()=>{
     console.log(`Server is running at ${port}`);
+})
+
+// Socket
+const io = require('socket.io')(server)
+io.on('connection', (socket)=>{
+    // Join
+    console.log(socket.id);
+    socket.on('join', (orderID)=>{
+        console.log(orderID);
+        socket.join(orderID)
+    })
+})
+
+eventEmitter.on('orderUpdated', (data)=>{
+    io.to(`order_${data.id}`).emit('orderUpdated', data)
+})
+eventEmitter.on('orderPlaced', (data)=>{
+    io.to(`adminRoom`).emit('orderPlaced', data)
 })
