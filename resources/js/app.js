@@ -58,6 +58,45 @@ function updateStatus(order){
 }
 
 updateStatus(order)
+$(document).ready(function () {
+
+    $('#customerOrderTable').DataTable({
+
+        pageLength: 5,
+
+        lengthMenu: [[5, 10, 20, -1], [5, 10, 20, 'All']],
+
+
+
+        "aoColumnDefs": [
+
+            { 'bSortable': false, 'aTargets': [0] }
+
+        ]
+
+    });
+
+});
+
+// $(document).ready(function () {
+
+//     $('#AdminOrderTable').DataTable({
+
+//         pageLength: 5,
+
+//         lengthMenu: [[5, 10, 20, -1], [5, 10, 20, 'All']],
+
+
+
+//         "aoColumnDefs": [
+
+//             { 'bSortable': false, 'aTargets': [0] }
+
+//         ]
+
+//     });
+
+// });
 
 
 const socket = io()

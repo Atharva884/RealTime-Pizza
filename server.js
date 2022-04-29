@@ -67,6 +67,9 @@ app.use((req, res, next)=>{
 
 // Routes
 app.use('/', require('./routes/web'))
+app.use((req, res)=>{
+    res.status(400).send(`<h1> 404 Page... </h1>`)
+})
 
 // Listen
 const server = app.listen(port, ()=>{
